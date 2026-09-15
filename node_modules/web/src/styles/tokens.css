@@ -1,112 +1,73 @@
-/* ---------------------------------------------------------------------------
-   FITNESS RPG — DESIGN TOKENS
-   Todos os valores derivam diretamente do GDD / Design System.
-   --------------------------------------------------------------------------- */
-
 :root {
-  /* -- Backgrounds -------------------------------------------------------- */
-  --bg-primary:   #0A0D12;
-  --bg-secondary: #10151D;
-  --bg-surface:   #1B222D;
-  --bg-elevated:  #232B38;
+  /* Tipografia Atualizada */
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Fredoka', cursive; /* Fonte do Logo RPeG */
 
-  /* -- Moedas ------------------------------------------------------------- */
-  --color-blue-coin: #28A9FF;
-  --color-grey-coin: #AEB7C4;
+  /* Paleta RPeG Run (Extraída do Logo) */
+  --rpeg-green-light: #A3E635; /* Fundo do logo / Folhas claras */
+  --rpeg-green-main: #65A30D;  /* Tênis e Folhas escuras */
+  --rpeg-yellow: #FBBF24;      /* Letra eRun / Coração */
+  --rpeg-yellow-glow: #FDE68A;
+  
+  /* Backgrounds (Mantendo tema escuro para dar contraste ao verde/amarelo) */
+  --bg-primary: #0F172A;
+  --bg-secondary: #1E293B;
+  --bg-surface: #334155;
+  
+  /* Textos */
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #64748B;
+  
+  /* Acentos adaptados para o Verde do RPeG Run */
+  --accent-primary: var(--rpeg-green-main);
+  --accent-light: var(--rpeg-green-light);
+  --accent-glow: rgba(163, 230, 53, 0.4);
 
-  /* -- Raridades ---------------------------------------------------------- */
-  --rarity-common:    #A0A7B0;
-  --rarity-uncommon:  #55C97B;
-  --rarity-rare:      #4DA6FF;
-  --rarity-epic:      #A86BFF;
-  --rarity-legendary: #F5B942;
+  /* Moedas (Adaptadas para combinar com as cores do logo) */
+  --coin-grey: #94A3B8; /* Mantido para Pé Cinza */
+  --coin-premium: var(--rpeg-yellow); /* Pé Premium agora é Dourado/Amarelo */
 
-  /* -- Semânticas --------------------------------------------------------- */
-  --color-success:  #55C97B;
-  --color-warning:  #F5B942;
-  --color-danger:   #FF5C5C;
-  --color-info:     #28A9FF;
+  /* UI & Borders */
+  --border-subtle: rgba(255, 255, 255, 0.1);
+  --border-focus: var(--rpeg-green-light);
 
-  /* -- Texto -------------------------------------------------------------- */
-  --text-primary:   #E8ECF0;
-  --text-secondary: #8A95A3;
-  --text-muted:     #4A5568;
-  --text-inverse:   #0A0D12;
+  /* Font Sizes */
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-md: 1.125rem;
+  --fs-lg: 1.5rem;
+  --fs-xl: 2rem;
 
-  /* -- Tipografia --------------------------------------------------------- */
-  --font-ui:      "Inter", system-ui, sans-serif;
-  --font-display: "Cinzel", Georgia, serif;
-
-  /* -- Pesos -------------------------------------------------------------- */
+  /* Font Weights */
   --fw-regular: 400;
-  --fw-medium:  500;
+  --fw-medium: 500;
   --fw-semibold: 600;
-  --fw-bold:    700;
-  --fw-extrabold: 800;
+  --fw-bold: 700;
 
-  /* -- Tamanhos de Fonte -------------------------------------------------- */
-  --fs-xs:   0.625rem;   /* 10px */
-  --fs-sm:   0.75rem;    /* 12px */
-  --fs-base: 0.875rem;   /* 14px */
-  --fs-md:   1rem;       /* 16px */
-  --fs-lg:   1.125rem;   /* 18px */
-  --fs-xl:   1.25rem;    /* 20px */
-  --fs-2xl:  1.5rem;     /* 24px */
-  --fs-3xl:  2rem;       /* 32px */
-  --fs-4xl:  2.5rem;     /* 40px */
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
 
-  /* -- Espaçamento (múltiplos de 4) --------------------------------------- */
-  --space-1:  4px;
-  --space-2:  8px;
-  --space-3:  12px;
-  --space-4:  16px;
-  --space-5:  20px;
-  --space-6:  24px;
-  --space-8:  32px;
-  --space-10: 40px;
-  --space-12: 48px;
-  --space-16: 64px;
-
-  /* -- Raios de Borda ----------------------------------------------------- */
-  --radius-sm:   4px;
-  --radius-md:   8px;
-  --radius-lg:   12px;
-  --radius-xl:   16px;
-  --radius-2xl:  20px;
-  --radius-full: 9999px;
-
-  /* -- Sombras e Glows ---------------------------------------------------- */
-  --shadow-sm:  0 1px 3px rgba(0, 0, 0, 0.4);
-  --shadow-md:  0 4px 12px rgba(0, 0, 0, 0.5);
-  --shadow-lg:  0 8px 24px rgba(0, 0, 0, 0.6);
-
-  --glow-blue:        0 0 12px rgba(40, 169, 255, 0.45);
-  --glow-blue-strong: 0 0 24px rgba(40, 169, 255, 0.65);
-  --glow-legendary:   0 0 20px rgba(245, 185, 66, 0.55);
-  --glow-epic:        0 0 16px rgba(168, 107, 255, 0.5);
-  --glow-rare:        0 0 14px rgba(77, 166, 255, 0.45);
-  --glow-uncommon:    0 0 12px rgba(85, 201, 123, 0.4);
-
-  /* -- Step Engine Tier Colors -------------------------------------------- */
-  --tier-1-color: #28A9FF;  /* 0–5k   passos: Azul */
-  --tier-2-color: #55C97B;  /* 5k–10k passos: Verde */
-  --tier-3-color: #A86BFF;  /* 10k+   passos: Roxo */
-  --tier-bg:      rgba(255, 255, 255, 0.05);
-
-  /* -- Bordas ------------------------------------------------------------- */
-  --border-subtle:  rgba(255, 255, 255, 0.06);
-  --border-default: rgba(255, 255, 255, 0.1);
-  --border-strong:  rgba(255, 255, 255, 0.2);
-
-  /* -- Transições --------------------------------------------------------- */
-  --transition-fast:   150ms ease;
-  --transition-normal: 250ms ease;
-  --transition-slow:   400ms ease;
-
-  /* -- z-index ------------------------------------------------------------ */
-  --z-base:    0;
-  --z-raised:  10;
+  /* Z-index */
+  --z-base: 1;
+  --z-raised: 10;
   --z-overlay: 100;
-  --z-modal:   200;
-  --z-toast:   300;
+
+  /* Tier Colors (Progress Bar) */
+  --tier-1: #94A3B8; /* Comum */
+  --tier-2: #38BDF8; /* Raro */
+  --tier-3: var(--rpeg-yellow); /* Épico/Lendário (Amarelo RPeG) */
+
+  /* Raridades */
+  --rarity-common: #94A3B8;
+  --rarity-uncommon: #4ADE80;
+  --rarity-rare: #3B82F6;
+  --rarity-epic: #A855F7;
+  --rarity-legendary: var(--rpeg-yellow);
 }

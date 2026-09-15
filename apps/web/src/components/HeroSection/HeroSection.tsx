@@ -1,42 +1,38 @@
-import { Character, CharacterClass } from "@fitness-rpg/shared";
+import { Character, CharacterRace } from "@fitness-rpg/shared";
 import styles from "./HeroSection.module.css";
 
-interface Props { character: Character; }
+interface HeroSectionProps {
+  character: Character;
+}
 
-const CLASS_EMOJI: Record<CharacterClass, string> = {
-  [CharacterClass.WARRIOR]: "??",
-  [CharacterClass.MAGE]:    "??",
-  [CharacterClass.ARCHER]:  "??",
+const RACE_LABELS: Record<string, string> = {
+  [CharacterRace.HUMAN]: "Humano",
+  [CharacterRace.ELF]: "Elfo",
+  [CharacterRace.DWARF]: "Anão"
 };
 
-const CLASS_LABEL: Record<CharacterClass, string> = {
-  [CharacterClass.WARRIOR]: "Guerreiro",
-  [CharacterClass.MAGE]:    "Mago",
-  [CharacterClass.ARCHER]:  "Arqueiro",
-};
+export function HeroSection({ character }: HeroSectionProps) {
+  const raceLabel = character.race ? RACE_LABELS[character.race] : "Herói";
+  const genderLabel = character.gender === "female" ? "Feminino" : "Masculino";
 
-export function HeroSection({ character }: Props) {
   return (
-    <section className={styles.section} aria-label="Perfil do personagem">
-      <div className={styles.avatar}>
-        <div className={styles.avatarRing} data-class={character.class}>
-          {CLASS_EMOJI[character.class]}
+    <section className={styles.container}>
+      <div className={styles.avatarGlow}>
+        <div className={styles.avatarPlaceholder}>
+          <span className={styles.avatarEmoji}>
+            {character.race === CharacterRace.DWARF ? "?????" : 
+             character.race === CharacterRace.ELF ? "?????" : "???"}
+          </span>
         </div>
-        <span className={styles.levelBadge} aria-label={`Nível ${character.level}`}>
-          Lv{character.level}
-        </span>
       </div>
-
       <div className={styles.info}>
         <h1 className={styles.name}>{character.name}</h1>
-        <div className={styles.meta}>
-          <span className={styles.classBadge}>{CLASS_LABEL[character.class]}</span>
+        <p className={styles.levelClass}>
+          Lv. {character.level} • {raceLabel} ({genderLabel})
+        </p>
+        <div className={styles.eloBadge}>
+          ?? Arena Elo: <span>{character.elo}</span>
         </div>
-      </div>
-
-      <div className={styles.eloSection} aria-label={`Rating Arena: ${character.elo}`}>
-        <span className={styles.eloLabel}>Arena</span>
-        <span className={styles.eloValue}>{character.elo.toLocaleString("pt-BR")}</span>
       </div>
     </section>
   );

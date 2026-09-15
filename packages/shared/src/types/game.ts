@@ -1,5 +1,11 @@
 // --- Enums ------------------------------------------------------------------
 
+export enum CharacterRace {
+  HUMAN = 'human',
+  ELF = 'elf',
+  DWARF = 'dwarf'
+}
+
 export enum CharacterClass {
   WARRIOR = "WARRIOR",
   MAGE    = "MAGE",
@@ -89,3 +95,4 @@ export interface ActionItem {
   href:     string;
   accent?:  boolean;
 }
+
