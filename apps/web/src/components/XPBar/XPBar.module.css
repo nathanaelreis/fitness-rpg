@@ -1,0 +1,96 @@
+.container {
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--space-2);
+}
+
+.label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.values {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.current {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.separator { color: var(--text-muted); font-size: var(--fs-xs); }
+
+.total {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text-secondary);
+}
+
+.percent {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--color-blue-coin);
+  margin-left: var(--space-1);
+}
+
+.trackWrapper {
+  position: relative;
+  height: 8px;
+  background: var(--tier-bg);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.track {
+  height: 100%;
+  background: var(--tier-bg);
+  border-radius: var(--radius-full);
+}
+
+.fill {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, #1a7fd4, var(--color-blue-coin));
+  box-shadow: 0 0 8px rgba(40, 169, 255, 0.5);
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: width;
+}
+
+.fill::after {
+  content: "";
+  position: absolute;
+  top: 0; right: 0;
+  width: 20px; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35));
+  border-radius: 0 var(--radius-full) var(--radius-full) 0;
+}
+
+@keyframes xpFlash {
+  0%   { opacity: 0; transform: scaleX(0); }
+  30%  { opacity: 1; }
+  100% { opacity: 0; transform: scaleX(1.05); }
+}
+
+.fillAnimate { animation: xpFlash 0.6s ease forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fill { transition: none; }
+  .fillAnimate { animation: none; }
+}

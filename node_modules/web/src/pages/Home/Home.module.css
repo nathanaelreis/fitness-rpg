@@ -1,0 +1,146 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--bg-primary);
+}
+
+/* -- Top bar ---------------------------------------------------------------- */
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-raised);
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.06em;
+  background: linear-gradient(135deg, var(--color-blue-coin), #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.notifBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  padding: var(--space-1);
+  border-radius: var(--radius-md);
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+.notifBtn:hover { color: var(--text-primary); }
+
+.notifDot {
+  position: absolute;
+  top: 4px; right: 4px;
+  width: 7px; height: 7px;
+  background: var(--color-danger);
+  border-radius: 50%;
+  border: 1.5px solid var(--bg-secondary);
+}
+
+/* -- Rewards strip ---------------------------------------------------------- */
+.rewardsStrip {
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.rewardsLabel {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-2);
+}
+
+.rewardsList {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.rewardChip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.rewardChip:hover { background: rgba(40, 169, 255, 0.1); }
+
+/* -- Divider ---------------------------------------------------------------- */
+.divider {
+  height: 1px;
+  background: var(--border-subtle);
+  margin: 0 var(--space-4);
+}
+
+/* -- Recent items strip ----------------------------------------------------- */
+.itemsSection {
+  padding: var(--space-4) 0 var(--space-4) var(--space-4);
+}
+
+.itemsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: var(--space-4);
+  margin-bottom: var(--space-3);
+}
+
+.itemsTitle {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.seeAll {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--color-blue-coin);
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+}
+
+.seeAll:hover { opacity: 0.8; }
+
+.itemsScroll {
+  display: flex;
+  gap: var(--space-3);
+  overflow-x: auto;
+  padding-right: var(--space-4);
+  padding-bottom: var(--space-2);
+  scrollbar-width: none;
+}
+
+.itemsScroll::-webkit-scrollbar { display: none; }
+
+/* -- Bottom safe area ------------------------------------------------------- */
+.bottomSafe { height: 24px; }

@@ -1,0 +1,113 @@
+.card {
+  position: relative;
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  overflow: hidden;
+  min-width: 120px;
+}
+
+.card:hover { transform: translateY(-2px); }
+.card:active { transform: translateY(0); }
+
+/* Raridade define a borda e o glow */
+.card[data-rarity="COMMON"]    { border-color: var(--rarity-common); }
+.card[data-rarity="UNCOMMON"]  { border-color: var(--rarity-uncommon); box-shadow: var(--glow-uncommon); }
+.card[data-rarity="RARE"]      { border-color: var(--rarity-rare);     box-shadow: var(--glow-rare); }
+.card[data-rarity="EPIC"]      { border-color: var(--rarity-epic);     box-shadow: var(--glow-epic); }
+.card[data-rarity="LEGENDARY"] { border-color: var(--rarity-legendary); box-shadow: var(--glow-legendary); }
+
+/* Fundo sutil de raridade */
+.card[data-rarity="UNCOMMON"]::before  { background: rgba(85,201,123,0.04); }
+.card[data-rarity="RARE"]::before      { background: rgba(77,166,255,0.04); }
+.card[data-rarity="EPIC"]::before      { background: rgba(168,107,255,0.05); }
+.card[data-rarity="LEGENDARY"]::before { background: rgba(245,185,66,0.06); }
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Equipped state */
+.card[data-equipped="true"] { border-style: solid; }
+.equippedBadge {
+  position: absolute;
+  top: 6px; left: 6px;
+  font-size: var(--fs-xs);
+  background: rgba(40,169,255,0.2);
+  color: var(--color-blue-coin);
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.04em;
+}
+
+/* New badge */
+.newBadge {
+  position: absolute;
+  top: 6px; right: 6px;
+  font-size: var(--fs-xs);
+  background: var(--rarity-uncommon);
+  color: var(--bg-primary);
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.04em;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-md);
+  font-size: 1.4rem;
+  align-self: center;
+  margin-top: var(--space-2);
+}
+
+.name {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--text-primary);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rarity {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.card[data-rarity="COMMON"]    .rarity { color: var(--rarity-common); }
+.card[data-rarity="UNCOMMON"]  .rarity { color: var(--rarity-uncommon); }
+.card[data-rarity="RARE"]      .rarity { color: var(--rarity-rare); }
+.card[data-rarity="EPIC"]      .rarity { color: var(--rarity-epic); }
+.card[data-rarity="LEGENDARY"] .rarity { color: var(--rarity-legendary); }
+
+.stat {
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.stat strong {
+  color: var(--text-primary);
+  font-weight: var(--fw-bold);
+}

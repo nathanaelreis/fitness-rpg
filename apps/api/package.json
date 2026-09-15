@@ -1,0 +1,25 @@
+{
+  "name": "api",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@fitness-rpg/shared": "*",
+    "fastify": "^4.26.2",
+    "ioredis": "^5.4.1",
+    "drizzle-orm": "^0.30.10",
+    "pg": "^8.11.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "@types/pg": "^8.11.6",
+    "drizzle-kit": "^0.20.17",
+    "tsx": "^4.7.2",
+    "typescript": "^5.4.5"
+  }
+}
