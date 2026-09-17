@@ -1,4 +1,4 @@
-.page {
+﻿.page {
   display: flex;
   flex-direction: column;
   min-height: 100dvh;
@@ -8,17 +8,7 @@
 }
 
 /* -- Top bar ---------------------------------------------------------------- */
-.topBar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--space-3) var(--space-4);
-  background: var(--bg-secondary);
-  border-bottom: 1px solid var(--border-subtle);
-  position: sticky;
-  top: 0;
-  z-index: var(--z-raised);
-}
+.topBar { padding: var(--space-2) var(--space-4); display: flex; justify-content: center; border-bottom: 1px solid var(--border-subtle); background: var(--bg-primary); }
 
 .logo {
   font-family: var(--font-display);
@@ -144,3 +134,5 @@
 
 /* -- Bottom safe area ------------------------------------------------------- */
 .bottomSafe { height: 24px; }
+
+.logoImg { height: 90px; object-fit: contain; margin: 0 auto; display: block; border-radius: 12px; }

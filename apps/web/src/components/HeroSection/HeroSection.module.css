@@ -1,98 +1,19 @@
-.section {
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
-  padding: var(--space-4) var(--space-4) var(--space-3);
+﻿.container { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-4) var(--space-4) var(--space-3); }
+.avatarGlow {
+  position: relative; width: 80px; height: 80px; flex-shrink: 0; border-radius: 50%;
+  background: var(--bg-elevated); border: 3px solid var(--rpeg-yellow);
+  box-shadow: 0 0 20px var(--accent-glow); overflow: hidden;
 }
-
-.avatar {
-  position: relative;
-  width: 64px;
-  height: 64px;
-  flex-shrink: 0;
+.avatarSprite {
+  width: 100%; height: 100%;
+  background-image: url('/assets/characters.jpg');
+  /* Ajuste preciso para focar no rosto do Humano Chibi Guerreiro */
+  background-size: 650% auto;
+  background-position: 2% 8%;
+  background-repeat: no-repeat;
 }
-
-.avatarRing {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background: var(--bg-elevated);
-  border: 2px solid var(--border-default);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
-}
-
-.avatarRing[data-class="WARRIOR"] { border-color: var(--rarity-rare);  box-shadow: var(--glow-rare); }
-.avatarRing[data-class="MAGE"]    { border-color: var(--rarity-epic);  box-shadow: var(--glow-epic); }
-.avatarRing[data-class="ARCHER"]  { border-color: var(--rarity-uncommon); box-shadow: var(--glow-uncommon); }
-
-.levelBadge {
-  position: absolute;
-  bottom: -4px;
-  right: -4px;
-  background: var(--bg-elevated);
-  border: 1.5px solid var(--border-default);
-  border-radius: var(--radius-full);
-  padding: 1px 6px;
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-bold);
-  color: var(--text-primary);
-  line-height: 1.6;
-}
-
 .info { flex: 1; min-width: 0; }
-
-.name {
-  font-family: var(--font-display);
-  font-size: var(--fs-xl);
-  font-weight: var(--fw-bold);
-  color: var(--text-primary);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  letter-spacing: 0.02em;
-}
-
-.meta {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  margin-top: var(--space-1);
-}
-
-.classBadge {
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-semibold);
-  padding: 2px 8px;
-  border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.07);
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.eloSection {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 2px;
-  flex-shrink: 0;
-}
-
-.eloLabel {
-  font-size: var(--fs-xs);
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.eloValue {
-  font-size: var(--fs-lg);
-  font-weight: var(--fw-extrabold);
-  color: var(--color-blue-coin);
-  text-shadow: var(--glow-blue);
-  letter-spacing: -0.02em;
-}
+.name { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: var(--fw-bold); color: var(--rpeg-yellow); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: 0.03em; }
+.levelClass { font-size: var(--fs-sm); color: var(--text-secondary); margin-top: var(--space-1); }
+.eloBadge { margin-top: var(--space-2); font-size: var(--fs-xs); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; display: inline-flex; align-items: center; gap: 4px; }
+.eloBadge span { font-size: var(--fs-base); font-weight: var(--fw-bold); color: var(--rpeg-yellow); }

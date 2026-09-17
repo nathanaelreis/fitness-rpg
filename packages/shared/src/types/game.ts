@@ -1,5 +1,3 @@
-// --- Enums ------------------------------------------------------------------
-
 export enum CharacterRace {
   HUMAN = 'human',
   ELF = 'elf',
@@ -34,8 +32,6 @@ export enum Currency {
   BLUE_COIN = "BLUE_COIN",
 }
 
-// --- Interfaces -------------------------------------------------------------
-
 export interface CharacterStats {
   attack:  number;
   defense: number;
@@ -47,6 +43,8 @@ export interface Character {
   id:             string;
   name:           string;
   class:          CharacterClass;
+  race?:          CharacterRace;
+  gender?:        'male' | 'female';
   level:          number;
   currentXP:      number;
   xpToNextLevel:  number;
@@ -62,7 +60,7 @@ export interface Item {
   slot:       EquipmentSlot;
   stats:      Partial<CharacterStats>;
   isEquipped: boolean;
-  isNew:      boolean;
+  isNew?:     boolean;
   iconUrl?:   string;
 }
 
@@ -95,4 +93,3 @@ export interface ActionItem {
   href:     string;
   accent?:  boolean;
 }
-
