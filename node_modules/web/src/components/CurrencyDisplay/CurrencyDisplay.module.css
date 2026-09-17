@@ -1,4 +1,4 @@
-.container {
+﻿.container {
   display: flex;
   gap: var(--space-3);
   padding: var(--space-3) var(--space-4);
@@ -67,3 +67,17 @@
 @media (prefers-reduced-motion: reduce) {
   .delta { animation: none; opacity: 1; }
 }
+
+
+
+.coinSprite {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  mix-blend-mode: screen; /* Remove magicamente o fundo cinza escuro */
+}
+.spriteGrey { background-image: url('/assets/coin_grey.jpg'); }
+.spriteBlue { background-image: url('/assets/coin_blue.jpg'); }
