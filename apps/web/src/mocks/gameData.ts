@@ -8,9 +8,10 @@ export const mockCharacter: Character = {
   class: CharacterClass.WARRIOR,
   appearance: {
     hairStyle: "style_1",
-    hairColor: "#4a3018",
-    eyeColor: "#1d4ed8",
-    skinTone: "#fcd34d"
+    hairColor: "#3b2f2f",
+    eyeShape: "shape_1",
+    eyeColor: "#5c4033",
+    skinTone: "#f5d0b5"
   },
   level: 1,
   currentXP: 0,

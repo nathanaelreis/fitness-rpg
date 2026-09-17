@@ -10,16 +10,26 @@ export function CharacterCreator() {
   const [gender, setGender] = useState<'male'|'female'>('male');
   
   const [appearance, setAppearance] = useState<CharacterAppearance>({
-    skinTone: "#fcd34d",
-    hairColor: "#4a3018",
-    eyeColor: "#1d4ed8",
-    hairStyle: "style_1"
+    skinTone: "#f5d0b5",
+    hairColor: "#3b2f2f",
+    eyeColor: "#5c4033",
+    hairStyle: "style_1",
+    eyeShape: "shape_1"
   });
 
-  const skinColors = ["#fcd34d", "#f87171", "#d97706", "#78350f", "#e2e8f0"];
-  const hairColors = ["#4a3018", "#f59e0b", "#dc2626", "#10b981", "#e2e8f0"];
-  const eyeColors = ["#1d4ed8", "#15803d", "#b91c1c", "#a21caf", "#000000"];
+  // Cores restritas exatamente como no Guia de Referência do Jogador
+  const skinColors = ["#f5d0b5", "#f0b9a0", "#e0ac8f", "#c28e70", "#8d5b40"]; // Tons Base
+  const hairColors = ["#3b2f2f", "#1a1a1a", "#e5c158", "#9c3b22", "#e8e8e8"]; // Castanho, Preto, Loiro, Ruivo, Branco
+  const eyeColors =  ["#5c4033", "#2e8b57", "#1e90ff", "#8a2be2", "#daa520"]; // Castanho, Verde, Azul, Roxo, Dourado
+
   const hairStyles = ["style_1", "style_2", "style_3"];
+  const eyeShapes = [
+    { id: "shape_1", label: "Redondo" },
+    { id: "shape_2", label: "Amendoado" },
+    { id: "shape_3", label: "Alongado" },
+    { id: "shape_4", label: "Caído" },
+    { id: "shape_5", label: "Intenso" }
+  ];
 
   return (
     <div className={styles.page}>
@@ -75,21 +85,32 @@ export function CharacterCreator() {
         </div>
 
         <div className={styles.field}>
-          <label>Estilo de Cabelo</label>
+          <label>Estilo de Cabelo (1 a 3)</label>
           <div className={styles.buttonGroup}>
-            {hairStyles.map(h => <button key={h} className={appearance.hairStyle === h ? styles.btnActive : styles.btn} onClick={() => setAppearance({...appearance, hairStyle: h})}>{h.replace('style_', 'Tipo ')}</button>)}
+            {hairStyles.map((h, i) => <button key={h} className={appearance.hairStyle === h ? styles.btnActive : styles.btn} onClick={() => setAppearance({...appearance, hairStyle: h})}>Corte {i+1}</button>)}
           </div>
         </div>
 
         <div className={styles.field}>
-          <label>Cor do Cabelo</label>
+          <label>Cor do Cabelo (As 5 Cores do Guia)</label>
           <div className={styles.colorPicker}>
             {hairColors.map(c => <div key={c} className={styles.colorSwatch} style={{ background: c, border: appearance.hairColor === c ? '2px solid white' : 'none' }} onClick={() => setAppearance({...appearance, hairColor: c})} />)}
           </div>
         </div>
 
         <div className={styles.field}>
-          <label>Cor dos Olhos</label>
+          <label>Formato dos Olhos (1 a 5)</label>
+          <div className={styles.buttonGroup} style={{flexWrap: 'wrap'}}>
+            {eyeShapes.map(s => (
+              <button key={s.id} className={appearance.eyeShape === s.id ? styles.btnActive : styles.btn} onClick={() => setAppearance({...appearance, eyeShape: s.id})}>
+                {s.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.field}>
+          <label>Cor dos Olhos (As 5 Cores do Guia)</label>
           <div className={styles.colorPicker}>
             {eyeColors.map(c => <div key={c} className={styles.colorSwatch} style={{ background: c, border: appearance.eyeColor === c ? '2px solid white' : 'none' }} onClick={() => setAppearance({...appearance, eyeColor: c})} />)}
           </div>

@@ -9,6 +9,7 @@ export interface CharacterStats { attack: number; defense: number; speed: number
 export interface CharacterAppearance {
   hairStyle: string;
   hairColor: string;
+  eyeShape: string;
   eyeColor: string;
   skinTone: string;
 }
@@ -35,7 +36,7 @@ export interface Item {
   stats: Partial<CharacterStats>;
   isEquipped: boolean;
   isNew?: boolean;
-  visualAssetId?: string; /* ID da imagem da armadura/arma para sobrepor no avatar */
+  visualAssetId?: string;
 }
 
 export type ChestType = "common" | "uncommon" | "rare";
