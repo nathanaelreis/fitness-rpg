@@ -24,7 +24,7 @@ export function Home() {
       <header className={styles.topBar}>
         <img src="/assets/logo.jpg" alt="RPeG Run" className={styles.logoImg} />
       </header>
-      <HeroSection character={mockCharacter} />
+      <a href="#/create" style={{textDecoration: "none"}}><HeroSection character={mockCharacter} /></a>
       <XPBar currentXP={mockCharacter.currentXP} xpToNextLevel={mockCharacter.xpToNextLevel} level={mockCharacter.level} />
       <CurrencyDisplay wallet={mockWallet} />
       <StepProgress steps={mockSteps} />
@@ -50,3 +50,4 @@ export function Home() {
     </main>
   );
 }
+

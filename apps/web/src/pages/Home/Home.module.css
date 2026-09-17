@@ -135,4 +135,5 @@
 /* -- Bottom safe area ------------------------------------------------------- */
 .bottomSafe { height: 24px; }
 
-.logoImg { height: 90px; object-fit: contain; margin: 0 auto; display: block; border-radius: 12px; }
+.logoImg { height: 90px; object-fit: contain; margin: 0 auto; display: block; border-radius: 12px; mix-blend-mode: screen; }
+

@@ -1,77 +1,67 @@
-import { useState } from "react";
-import { mockInventory, mockCharacter } from "../../mocks/gameData";
-import { ItemCard } from "../../components/ItemCard/ItemCard";
-import { Item, CharacterStats } from "@fitness-rpg/shared";
-import styles from "./Inventory.module.css";
+Ôªøimport React from 'react';
+import { Item, EquipmentSlot } from '@fitness-rpg/shared';
+import { mockInventory, mockCharacter } from '../../mocks/gameData';
+import { DynamicAvatar } from '../../components/DynamicAvatar/DynamicAvatar';
+import styles from './Inventory.module.css';
 
 export function Inventory() {
-  const [items, setItems] = useState<Item[]>(mockInventory);
+  const [items] = React.useState<Item[]>(mockInventory);
 
-  // Calcula status dinamicamente para o frontend (base + equipados)
-  const baseStats = mockCharacter.stats;
-  const currentStats = items.filter(i => i.isEquipped).reduce((acc, item) => {
-    return {
-      attack: acc.attack + (item.stats.attack || 0),
-      defense: acc.defense + (item.stats.defense || 0),
-      speed: acc.speed + (item.stats.speed || 0),
-      health: acc.health + (item.stats.health || 0),
-    };
-  }, { ...baseStats });
+  const equippedItems = items.filter(i => i.isEquipped);
+  const unequippedItems = items.filter(i => !i.isEquipped);
 
-  const handleItemClick = (clickedItem: Item) => {
-    // LÛgica simples de toggle equip/unequip simulando o backend
-    setItems(prev => prev.map(item => {
-      // Desequipa qualquer item no mesmo slot se estivermos equipando um novo
-      if (!clickedItem.isEquipped && item.slot === clickedItem.slot && item.isEquipped) {
-        return { ...item, isEquipped: false };
-      }
-      // Toggle o item clicado
-      if (item.id === clickedItem.id) {
-        return { ...item, isEquipped: !item.isEquipped, isNew: false };
-      }
-      return item;
-    }));
+  const renderSlot = (slot: EquipmentSlot) => {
+    const item = equippedItems.find(i => i.slot === slot);
+    return (
+      <div className={styles.slotBox}>
+        <div className={styles.slotLabel}>{slot}</div>
+        {item ? <div className={styles.equippedIcon}>{item.name[0]}</div> : <div className={styles.emptySlot} />}
+      </div>
+    );
   };
 
   return (
-    <main className={styles.page}>
-      <header className={styles.topBar}>
-        <button className={styles.backBtn} onClick={() => window.location.hash = ""} aria-label="Voltar">
-          ?
-        </button>
-        <h1 className={styles.title}>Invent·rio</h1>
+    <div className={styles.page}>
+      <header className={styles.header}>
+        <a href="#/" className={styles.backBtn}>‚Üê Voltar</a>
+        <h1>Invent√°rio</h1>
       </header>
 
-      <section className={styles.statsStrip} aria-label="Atributos totais">
-        <div className={styles.statItem}>
-          <span className={styles.statLabel}>ATK</span>
-          <span className={styles.statValue} data-stat="atk">{currentStats.attack}</span>
+      {/* PAPER DOLL PREVIEW (CORPO INTEIRO) */}
+      <section className={styles.characterPreview}>
+        <div className={styles.slotsLeft}>
+          {renderSlot(EquipmentSlot.HELMET)}
+          {renderSlot(EquipmentSlot.WEAPON)}
+          {renderSlot(EquipmentSlot.ACCESSORY)}
         </div>
-        <div className={styles.statItem}>
-          <span className={styles.statLabel}>DEF</span>
-          <span className={styles.statValue} data-stat="def">{currentStats.defense}</span>
+        
+        <div className={styles.avatarWrapper}>
+          <DynamicAvatar appearance={mockCharacter.appearance} equippedItems={equippedItems} mode="full" />
         </div>
-        <div className={styles.statItem}>
-          <span className={styles.statLabel}>SPD</span>
-          <span className={styles.statValue} data-stat="spd">{currentStats.speed}</span>
-        </div>
-        <div className={styles.statItem}>
-          <span className={styles.statLabel}>HP</span>
-          <span className={styles.statValue} data-stat="hp">{currentStats.health}</span>
+
+        <div className={styles.slotsRight}>
+          {renderSlot(EquipmentSlot.CHEST)}
+          {renderSlot(EquipmentSlot.LEGS)}
+          {renderSlot(EquipmentSlot.BOOTS)}
         </div>
       </section>
 
-      {items.length > 0 ? (
-        <div className={styles.grid}>
-          {items.map(item => (
-            <ItemCard key={item.id} item={item} onClick={handleItemClick} />
+      <section className={styles.bag}>
+        <h2>Mochila</h2>
+        <div className={styles.bagGrid}>
+          {unequippedItems.length === 0 && <p className={styles.emptyMsg}>Mochila vazia.</p>}
+          {unequippedItems.map(item => (
+            <div key={item.id} className={styles.bagItem}>
+              {item.isNew && <span className={styles.newBadge}>Novo</span>}
+              <div className={styles.bagIcon}>{item.name[0]}</div>
+              <div className={styles.bagInfo}>
+                <div className={styles.bagName}>{item.name}</div>
+                <div className={styles.bagRarity}>{item.rarity}</div>
+              </div>
+            </div>
           ))}
         </div>
-      ) : (
-        <div className={styles.emptyState}>
-          Seu invent·rio est· vazio. Ganhe ba˙s caminhando!
-        </div>
-      )}
-    </main>
+      </section>
+    </div>
   );
 }
