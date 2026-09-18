@@ -1,10 +1,12 @@
-﻿import { HeroSection } from "../../components/HeroSection/HeroSection";
+﻿import { useState, useEffect } from "react";
+import { HeroSection } from "../../components/HeroSection/HeroSection";
 import { XPBar } from "../../components/XPBar/XPBar";
 import { StepProgress } from "../../components/StepProgress/StepProgress";
 import { CurrencyDisplay } from "../../components/CurrencyDisplay/CurrencyDisplay";
 import { ItemCard } from "../../components/ItemCard/ItemCard";
 import { ActionHub } from "../../components/ActionHub/ActionHub";
-import { mockCharacter, mockSteps, mockWallet, mockPendingRewards, mockActions, mockInventory } from "../../mocks/gameData";
+import { mockSteps, mockWallet, mockPendingRewards, mockActions, mockInventory } from "../../mocks/gameData";
+import { getActiveCharacter, SavedCharacter } from "../../services/characterStore";
 import { PendingReward, ChestType } from "@fitness-rpg/shared";
 import styles from "./Home.module.css";
 
@@ -23,15 +25,28 @@ function RewardChip({ reward }: { reward: PendingReward }) {
 }
 
 export function Home() {
+  const [character, setCharacter] = useState<SavedCharacter>(getActiveCharacter());
+
+  useEffect(() => {
+    // Carrega o personagem ativo atualizado do localStorage
+    setCharacter(getActiveCharacter());
+  }, []);
+
   return (
     <main className={styles.page}>
       <header className={styles.topBar}>
         <img src="/assets/logo.jpg" alt="RPeG Run" className={styles.logoImg} />
       </header>
-      <a href="#/create" style={{textDecoration: "none"}}><HeroSection character={mockCharacter} /></a>
-      <XPBar currentXP={mockCharacter.currentXP} xpToNextLevel={mockCharacter.xpToNextLevel} level={mockCharacter.level} />
+
+      {/* HeroSection agora lê diretamente o personagem salvo */}
+      <a href="#/create" style={{ textDecoration: "none" }} title="Clique para gerenciar ou criar personagens">
+        <HeroSection character={character} />
+      </a>
+
+      <XPBar currentXP={character.currentXP} xpToNextLevel={character.xpToNextLevel} level={character.level} />
       <CurrencyDisplay wallet={mockWallet} />
       <StepProgress steps={mockSteps} />
+
       {mockPendingRewards.length > 0 && (
         <section className={styles.rewardsStrip}>
           <div className={styles.rewardsLabel}>Baús para abrir ({mockPendingRewards.length})</div>
@@ -40,7 +55,9 @@ export function Home() {
           </div>
         </section>
       )}
+
       <div className={styles.divider} />
+
       <section className={styles.itemsSection}>
         <div className={styles.itemsHeader}>
           <span className={styles.itemsTitle}>Itens Recentes</span>
@@ -49,6 +66,7 @@ export function Home() {
           {mockInventory.map((item) => <ItemCard key={item.id} item={item} onClick={() => {}} />)}
         </div>
       </section>
+
       <ActionHub actions={mockActions} />
       <div className={styles.bottomSafe} />
     </main>
