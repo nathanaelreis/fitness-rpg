@@ -1,84 +1,76 @@
-.section {
-  padding: var(--space-4);
+﻿.section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
 }
-
 .title {
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-semibold);
+  font-family: sans-serif;
+  color: #6ee7b7;
+  font-size: 0.75rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-muted);
-  margin-bottom: var(--space-3);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+  margin-bottom: 0.25rem;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-3);
+  grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr;
+  gap: 0.5rem;
 }
 
 .action {
-  position: relative;
+  background: linear-gradient(180deg, #3f3c31 0%, #2f2c23 100%);
+  border: 2px solid #b79c65; /* Dourado da borda do pergaminho/card */
+  border-radius: 8px;
+  text-decoration: none;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2);
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-xl);
-  padding: var(--space-5) var(--space-4);
-  cursor: pointer;
-  text-decoration: none;
-  transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+  padding: 0.5rem;
+  position: relative;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 4px 6px rgba(0,0,0,0.6);
+  transition: transform 0.1s;
 }
+.action:active { transform: scale(0.95); }
 
-.action:hover {
-  background: var(--bg-elevated);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+/* Os ícones que nós fatiamos em Python! */
+.iconSprite {
+  width: 80px;
+  height: 60px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: drop-shadow(0 4px 4px rgba(0,0,0,0.5));
 }
-
-.action:active { transform: translateY(0); }
-
-.action[data-accent="true"] {
-  border-color: rgba(40, 169, 255, 0.3);
-  background: rgba(40, 169, 255, 0.07);
-  box-shadow: inset 0 0 20px rgba(40, 169, 255, 0.05);
-}
-
-.action[data-accent="true"]:hover {
-  background: rgba(40, 169, 255, 0.12);
-  box-shadow: var(--glow-blue), var(--shadow-md);
-}
-
-.actionIcon {
-  font-size: 1.75rem;
-  line-height: 1;
-}
+.spriteArena { background-image: url('/assets/icons/arena.png'); }
+.spriteInventory { background-image: url('/assets/icons/inventory.png'); }
+.spriteMission { background-image: url('/assets/icons/mission.png'); }
 
 .actionLabel {
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-semibold);
-  color: var(--text-primary);
-  letter-spacing: 0.01em;
+  font-family: 'Cinzel', 'Georgia', serif;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #fcd34d;
+  margin-top: -5px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
 }
-
-.action[data-accent="true"] .actionLabel { color: var(--color-blue-coin); }
 
 .badge {
   position: absolute;
-  top: 10px; right: 10px;
-  background: var(--color-danger);
+  top: -8px; right: -8px;
+  background: #ef4444;
   color: white;
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-bold);
-  min-width: 18px;
-  height: 18px;
-  padding: 0 5px;
-  border-radius: var(--radius-full);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
+  font-size: 0.75rem;
+  font-weight: bold;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid #b79c65;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  font-family: sans-serif;
 }
+
+.spriteEvent { background-image: url('/assets/icons/chest_epic.png'); } /* Placeholder pro Evento */

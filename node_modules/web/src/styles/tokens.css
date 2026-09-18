@@ -35,3 +35,6 @@
   --tier-1: #94A3B8; --tier-2: #38BDF8; --tier-3: var(--rpeg-yellow);
   --rarity-common: #94A3B8; --rarity-uncommon: #4ADE80; --rarity-rare: #3B82F6; --rarity-epic: #A855F7; --rarity-legendary: var(--rpeg-yellow);
 }
+
+body { cursor: url('/assets/icons/cursor_normal.png'), auto; }
+button, a, select, input { cursor: url('/assets/icons/cursor_custom.png'), pointer; }

@@ -1,5 +1,4 @@
-﻿import React from 'react';
-import { CharacterAppearance, Item } from '@fitness-rpg/shared';
+﻿import { CharacterAppearance, Item } from '@fitness-rpg/shared';
 import styles from './DynamicAvatar.module.css';
 
 interface DynamicAvatarProps {
@@ -81,3 +80,4 @@ export function DynamicAvatar({ appearance, equippedItems = [], mode = 'full' }:
     </div>
   );
 }
+

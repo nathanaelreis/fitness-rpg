@@ -1,0 +1,241 @@
+﻿.page {
+  min-height: 100vh;
+  background-color: #0a0500;
+  background-image: 
+    radial-gradient(ellipse at 50% 30%, rgba(180, 30, 0, 0.25) 0%, transparent 70%),
+    linear-gradient(rgba(0,0,0,0.6) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,0,0,0.6) 1px,transparent 1px);
+  background-size: 100% 100%, 60px 40px, 60px 40px;
+  color: #e5e7eb;
+  padding: 1rem 1rem 7rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 480px;
+  margin: 0 auto;
+  font-family: sans-serif;
+}
+
+.mainBoard {
+  background: linear-gradient(180deg,#7a766c 0%,#5c5850 100%);
+  border: 4px solid #36342e;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.15), 0 8px 16px rgba(0,0,0,0.8);
+}
+
+.boardTitle {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 900;
+  color: #fbbf24;
+  text-transform: uppercase;
+  font-family: 'Georgia', serif;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.8);
+  padding: 0.75rem;
+  background: linear-gradient(180deg,#594523 0%,#302410 100%);
+  border-bottom: 2px solid #8c734b;
+}
+
+/* BOSS ART AREA */
+.bossArt {
+  position: relative;
+  background: linear-gradient(180deg, #1a0a00 0%, #2d0f00 50%, #1a0500 100%);
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.bossBg {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 50% 100%, rgba(255,80,0,0.3) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 0%, rgba(0,0,0,0.8) 0%, transparent 70%);
+}
+.bossEmoji {
+  font-size: 7rem;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 0 20px rgba(255,50,0,0.8));
+  margin-bottom: -10px;
+}
+.playerBoss {
+  position: absolute;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  z-index: 3;
+  margin-bottom: 0;
+}
+.bossLabel {
+  position: absolute;
+  bottom: 8px; right: 12px;
+  font-size: 0.6rem;
+  color: #fcd34d;
+  font-weight: bold;
+  z-index: 4;
+}
+
+/* HP BAR */
+.hpSection {
+  background: #1c0a00;
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.hpTitle {
+  font-size: 0.65rem;
+  font-weight: 900;
+  color: #fcd34d;
+  text-align: center;
+  text-transform: uppercase;
+}
+.hpBarBg {
+  height: 22px;
+  background: #111;
+  border: 2px solid #7c2d12;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
+}
+.hpBarFill {
+  height: 100%;
+  background: linear-gradient(90deg, #dc2626 0%, #ef4444 50%, #f87171 100%);
+  box-shadow: 0 0 8px #ef4444;
+  transition: width 0.5s;
+  position: relative;
+}
+.hpBarFill::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 40%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.3) 0%, transparent 100%);
+}
+.hpText {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.6rem;
+  font-weight: 900;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.9);
+}
+.collapseTimer {
+  font-size: 0.6rem;
+  color: #f87171;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* BOTTOM SECTION (Ranking) */
+.bottomSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  padding: 0.75rem;
+}
+
+/* Meu Ranking */
+.myRankCard {
+  background: linear-gradient(180deg,#e5d3b3 0%,#d4bf96 100%);
+  border: 2px solid #8c734b;
+  border-radius: 8px;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+.myRankTitle {
+  font-size: 0.55rem;
+  font-weight: 900;
+  color: #292524;
+  text-transform: uppercase;
+  border-bottom: 1px solid #8c734b;
+  width: 100%;
+  padding-bottom: 4px;
+  margin-bottom: 4px;
+}
+.myAvatar {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: #064e3b;
+  border: 3px solid #b79c65;
+  display: flex; justify-content: center; align-items: center;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+.myName { font-size: 0.6rem; font-weight: 900; color: #292524; }
+.myRankPos { font-size: 0.7rem; font-weight: 900; color: #7c2d12; }
+.myBestAttempt { font-size: 0.55rem; color: #57534e; }
+
+/* Top 5 */
+.top5Card {
+  background: linear-gradient(180deg,#1c1917 0%,#0c0a09 100%);
+  border: 2px solid #57534e;
+  border-radius: 8px;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.top5Title {
+  font-size: 0.55rem;
+  font-weight: 900;
+  color: #fcd34d;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 4px;
+}
+.rankRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.rankPos {
+  width: 14px;
+  font-size: 0.55rem;
+  font-weight: 900;
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+.rankPos[data-top="1"] { color: #fbbf24; }
+.rankPos[data-top="2"] { color: #d1d5db; }
+.rankPos[data-top="3"] { color: #f59e0b; }
+.rankAvatar {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: #374151;
+  display: flex; justify-content: center; align-items: center;
+  font-size: 0.7rem;
+  flex-shrink: 0;
+}
+.rankInfo { flex: 1; min-width: 0; }
+.rankName { font-size: 0.55rem; font-weight: 900; color: #f3f4f6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rankDmg { font-size: 0.45rem; color: #6b7280; }
+
+/* Botão CTA */
+.enterBtn {
+  background: linear-gradient(180deg, #b45309 0%, #92400e 100%);
+  border: 3px solid #fbbf24;
+  color: #fef3c7;
+  font-weight: 900;
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 0.75rem;
+  margin: 0 0.75rem 0.75rem 0.75rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
+  cursor: pointer;
+  letter-spacing: 0.05em;
+}
+.enterBtn:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.5); }

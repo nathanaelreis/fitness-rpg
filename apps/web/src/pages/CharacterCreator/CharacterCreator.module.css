@@ -1,17 +1,386 @@
-﻿.page { min-height: 100vh; background: var(--bg-primary); color: var(--text-primary); padding-bottom: 2rem; }
-.header { display: flex; align-items: center; gap: 1rem; padding: 1rem; background: var(--bg-secondary); border-bottom: 1px solid var(--border-subtle); }
-.backBtn { color: var(--text-muted); text-decoration: none; font-weight: var(--fw-bold); }
-.previewSection { display: flex; justify-content: center; padding: 2rem; background: radial-gradient(circle, var(--bg-surface) 0%, var(--bg-primary) 100%); border-bottom: 1px solid var(--border-subtle); }
-.avatarWrapper { width: 160px; height: 160px; }
-.formSection { padding: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
-.row { display: flex; gap: 1rem; }
-.field { display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
-.field label { font-size: var(--fs-sm); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; font-weight: bold; }
-.input, .select { padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-subtle); background: var(--bg-secondary); color: var(--text-primary); font-family: inherit; font-size: var(--fs-base); }
-.buttonGroup { display: flex; gap: 0.5rem; }
-.btn, .btnActive { flex: 1; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-subtle); background: var(--bg-surface); color: var(--text-secondary); cursor: pointer; font-weight: bold; }
-.btnActive { background: var(--accent-primary); color: #000; border-color: var(--accent-primary); }
-.colorPicker { display: flex; gap: 0.75rem; }
-.colorSwatch { width: 36px; height: 36px; border-radius: 50%; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.3); }
-.saveBtn { margin-top: 1rem; padding: 1rem; background: var(--accent-light); color: #000; font-family: var(--font-display); font-size: var(--fs-lg); font-weight: bold; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 4px 0 var(--rpeg-green-main); transition: transform 0.1s; }
-.saveBtn:active { transform: translateY(4px); box-shadow: none; }
+﻿.page {
+  min-height: 100vh;
+  background-color: #041c14;
+  background-image: linear-gradient(rgba(0,0,0,0.4) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.4) 1px,transparent 1px);
+  background-size: 60px 40px;
+  color: #1f2937;
+  padding: 1rem 0.75rem 7rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 480px;
+  margin: 0 auto;
+  font-family: sans-serif;
+}
+
+/* Cabeçalho */
+.header {
+  background: linear-gradient(180deg,#594523 0%,#302410 100%);
+  border: 2px solid #8c734b;
+  border-radius: 10px;
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+.headerAvatar {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: #064e3b;
+  border: 3px solid #b79c65;
+  display: flex; justify-content: center; align-items: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+.headerTitle {
+  font-size: 1rem;
+  font-weight: 900;
+  color: #fbbf24;
+  text-transform: uppercase;
+  font-family: 'Georgia', serif;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.8);
+  flex: 1;
+}
+.closeBtn {
+  background: #7c2d12;
+  color: white;
+  border: 2px solid #b91c1c;
+  width: 28px; height: 28px;
+  border-radius: 6px;
+  font-weight: 900;
+  font-size: 0.9rem;
+  display: flex; justify-content: center; align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+/* Input de Nome */
+.nameInput {
+  background: #d4bf96;
+  border: 2px solid #8c734b;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #292524;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+.nameInput::placeholder { color: #78716c; }
+
+/* Bloco de Pedra Genérico */
+.stoneBlock {
+  background: linear-gradient(180deg,#7a766c 0%,#5c5850 100%);
+  border: 3px solid #36342e;
+  border-radius: 10px;
+  padding: 0.75rem;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 4px 8px rgba(0,0,0,0.6);
+}
+.blockTitle {
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 900;
+  color: #fcd34d;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+  margin-bottom: 0.5rem;
+}
+
+/* GRID RAÇA E CLASSE */
+.twoCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+/* Classe Cards (2x2) */
+.classGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.classCard {
+  background: linear-gradient(180deg,#5c5850 0%,#46433c 100%);
+  border: 2px solid #282622;
+  border-radius: 6px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  transition: border-color 0.1s;
+}
+.classCard[data-active="true"] {
+  border-color: #fbbf24;
+  background: linear-gradient(180deg,#78641c 0%,#594523 100%);
+  box-shadow: 0 0 10px rgba(251,191,36,0.5);
+}
+.classIcon {
+  width: 40px; height: 40px;
+  background: linear-gradient(180deg,#374151 0%,#1f2937 100%);
+  border: 1px solid #4b5563;
+  border-radius: 4px;
+  display: flex; justify-content: center; align-items: center;
+  font-size: 1.2rem;
+}
+.classLabel {
+  font-size: 0.55rem;
+  font-weight: 900;
+  color: #d1d5db;
+  text-transform: uppercase;
+}
+
+/* Raça (3 mini-cards) */
+.raceGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 4px;
+}
+.raceCard {
+  background: linear-gradient(180deg,#5c5850 0%,#46433c 100%);
+  border: 2px solid #282622;
+  border-radius: 6px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+}
+.raceCard[data-active="true"] {
+  border-color: #fbbf24;
+  background: linear-gradient(180deg,#78641c 0%,#594523 100%);
+}
+.racePortrait {
+  width: 36px; height: 36px;
+  border-radius: 4px;
+  background: #374151;
+  display: flex; justify-content: center; align-items: center;
+  font-size: 1.3rem;
+}
+.raceLabel {
+  font-size: 0.5rem;
+  font-weight: 900;
+  color: #d1d5db;
+  text-align: center;
+}
+.raceDesc {
+  font-size: 0.4rem;
+  color: #9ca3af;
+  text-align: center;
+  line-height: 1.1;
+}
+
+/* Preview de Personagem */
+.previewBox {
+  background: linear-gradient(180deg,#4b4842 0%,#2f2c23 100%);
+  border: 2px solid #282622;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+  position: relative;
+  box-shadow: inset 0 4px 8px rgba(0,0,0,0.5);
+}
+.crownBadge {
+  position: absolute;
+  top: -10px; right: -6px;
+  font-size: 1.2rem;
+}
+.previewChar {
+  font-size: 5rem;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+}
+.restoreBtn {
+  font-size: 0.55rem;
+  color: #9ca3af;
+  margin-top: 4px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* APARÊNCIA */
+.appearanceGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+/* Painel de Aparência Básica */
+.appearanceBasic {
+  background: linear-gradient(180deg,#d4bf96 0%,#b89d7d 100%);
+  border: 2px solid #8c734b;
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+.appearanceTitle {
+  font-size: 0.6rem;
+  font-weight: 900;
+  color: #292524;
+  text-align: center;
+  text-transform: uppercase;
+  border-bottom: 1px solid #8c734b;
+  padding-bottom: 4px;
+  margin-bottom: 6px;
+}
+.swatchSection {
+  margin-bottom: 6px;
+}
+.swatchLabel {
+  font-size: 0.5rem;
+  font-weight: 900;
+  color: #57534e;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 3px;
+}
+.swatchRow {
+  display: flex;
+  gap: 3px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.swatch {
+  width: 18px; height: 18px;
+  border-radius: 3px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  flex-shrink: 0;
+}
+.swatch[data-active="true"] {
+  border-color: white;
+  transform: scale(1.2);
+}
+
+/* Estilos de Cabelo (Thumbnails) */
+.hairStyleRow {
+  display: flex;
+  gap: 3px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+.hairStyleThumb {
+  width: 28px; height: 28px;
+  border-radius: 4px;
+  background: #374151;
+  border: 2px solid transparent;
+  display: flex; justify-content: center; align-items: center;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.hairStyleThumb[data-active="true"] {
+  border-color: #10b981;
+  box-shadow: 0 0 8px rgba(16,185,129,0.5);
+}
+
+/* Formatos de Olhos */
+.eyeShapeRow {
+  display: flex;
+  gap: 3px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+.eyeThumb {
+  width: 28px; height: 18px;
+  border-radius: 12px;
+  background: #1f2937;
+  border: 2px solid transparent;
+  display: flex; justify-content: center; align-items: center;
+  cursor: pointer;
+  font-size: 0.7rem;
+}
+.eyeThumb[data-active="true"] {
+  border-color: #10b981;
+  box-shadow: 0 0 8px rgba(16,185,129,0.5);
+}
+
+/* Painel de Extras (Tatuagens, Cicatrizes, Acessórios) */
+.extrasPanel {
+  background: linear-gradient(180deg,#5c5850 0%,#3a3832 100%);
+  border: 2px solid #282622;
+  border-radius: 8px;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.extraSection { }
+.extraLabel {
+  font-size: 0.55rem;
+  font-weight: 900;
+  color: #fcd34d;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.extraGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+}
+.extraSlot {
+  aspect-ratio: 1;
+  background: #374151;
+  border: 1px solid #4b5563;
+  border-radius: 4px;
+  display: flex; justify-content: center; align-items: center;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.extraSlot[data-active="true"] {
+  border-color: #10b981;
+  background: #064e3b;
+}
+
+/* Gênero */
+.genderRow {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+.genderBtn {
+  flex: 1;
+  padding: 4px;
+  background: #374151;
+  border: 2px solid #4b5563;
+  border-radius: 4px;
+  color: #9ca3af;
+  font-size: 0.6rem;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+}
+.genderBtn[data-active="true"] {
+  background: #064e3b;
+  border-color: #10b981;
+  color: #d1fae5;
+}
+
+/* Botão Final */
+.createBtn {
+  background: linear-gradient(180deg,#b45309 0%,#92400e 100%);
+  border: 3px solid #fbbf24;
+  color: #fef3c7;
+  font-weight: 900;
+  font-size: 1rem;
+  text-align: center;
+  padding: 0.75rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+}
+.createBtn:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.5); }

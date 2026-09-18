@@ -11,9 +11,13 @@ import styles from "./Home.module.css";
 const CHEST_LABEL: Record<ChestType, string> = { common: "Comum", uncommon: "Incomum", rare: "Raro" };
 
 function RewardChip({ reward }: { reward: PendingReward }) {
+  const capType = reward.type.charAt(0).toUpperCase() + reward.type.slice(1);
+  const spriteClass = `chest${capType}`;
+
   return (
     <button className={styles.rewardChip}>
-      🎁 {CHEST_LABEL[reward.type]}
+      <div className={`${styles.chestSprite} ${styles[spriteClass]}`} />
+      <span>{CHEST_LABEL[reward.type]}</span>
     </button>
   );
 }
@@ -50,4 +54,3 @@ export function Home() {
     </main>
   );
 }
-

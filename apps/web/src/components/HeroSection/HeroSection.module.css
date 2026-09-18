@@ -1,19 +1,66 @@
-﻿.container { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-4) var(--space-4) var(--space-3); }
-.avatarGlow {
-  position: relative; width: 80px; height: 80px; flex-shrink: 0; border-radius: 50%;
-  background: var(--bg-elevated); border: 3px solid var(--rpeg-yellow);
-  box-shadow: 0 0 20px var(--accent-glow); overflow: hidden;
+﻿.heroCard {
+  background: linear-gradient(180deg, #7a766c 0%, #5c5850 100%);
+  border: 2px solid #36342e;
+  border-radius: 12px;
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 
+    inset 0 2px 0 rgba(255,255,255,0.15),
+    0 6px 12px rgba(0,0,0,0.6);
+  position: relative;
 }
-.avatarSprite {
-  width: 100%; height: 100%;
-  background-image: url('/assets/characters.jpg');
-  /* Ajuste preciso para focar no rosto do Humano Chibi Guerreiro */
-  background-size: 650% auto;
-  background-position: 2% 8%;
-  background-repeat: no-repeat;
+
+.avatarRing {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #2a2a2a;
+  border: 3px solid #8c734b; /* Borda dourada/bronze */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
-.info { flex: 1; min-width: 0; }
-.name { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: var(--fw-bold); color: var(--rpeg-yellow); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: 0.03em; }
-.levelClass { font-size: var(--fs-sm); color: var(--text-secondary); margin-top: var(--space-1); }
-.eloBadge { margin-top: var(--space-2); font-size: var(--fs-xs); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; display: inline-flex; align-items: center; gap: 4px; }
-.eloBadge span { font-size: var(--fs-base); font-weight: var(--fw-bold); color: var(--rpeg-yellow); }
+
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fbbf24; /* Ouro */
+  margin: 0;
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.8);
+  font-family: 'Georgia', serif;
+}
+
+.classInfo {
+  font-size: 0.75rem;
+  color: #e5e5e5;
+  font-family: sans-serif;
+  margin-top: 2px;
+  text-shadow: 1px 1px 0px rgba(0,0,0,0.8);
+}
+
+.eloBadge {
+  margin-top: 6px;
+  background: linear-gradient(180deg, #594523 0%, #302410 100%);
+  border: 1px solid #8c734b;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: bold;
+  color: #fbbf24;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: sans-serif;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  align-self: flex-start;
+}

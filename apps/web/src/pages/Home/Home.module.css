@@ -1,139 +1,90 @@
 ﻿.page {
+  min-height: 100vh;
+  /* Cor base verde bem escura e um padrão simples de blocos via CSS para simular a parede */
+  background-color: #041c14;
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.4) 1px, transparent 1px);
+  background-size: 60px 40px;
+  background-position: center top;
+  color: #e5e7eb;
+  padding: 0 1rem 6rem 1rem;
   display: flex;
   flex-direction: column;
-  min-height: 100dvh;
+  gap: 0.75rem;
   max-width: 480px;
   margin: 0 auto;
-  background: var(--bg-primary);
+  font-family: 'Cinzel', 'Georgia', serif; /* Fontes com estilo RPG */
 }
 
-/* -- Top bar ---------------------------------------------------------------- */
-.topBar { padding: var(--space-2) var(--space-4); display: flex; justify-content: center; border-bottom: 1px solid var(--border-subtle); background: var(--bg-primary); }
-
-.logo {
-  font-family: var(--font-display);
-  font-size: var(--fs-lg);
-  font-weight: var(--fw-bold);
-  letter-spacing: 0.06em;
-  background: linear-gradient(135deg, var(--color-blue-coin), #8b5cf6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.topBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+}
+.logoImg {
+  height: 80px;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.8));
 }
 
-.notifBtn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.2rem;
-  color: var(--text-secondary);
-  padding: var(--space-1);
-  border-radius: var(--radius-md);
-  position: relative;
-  transition: color var(--transition-fast);
-}
-
-.notifBtn:hover { color: var(--text-primary); }
-
-.notifDot {
-  position: absolute;
-  top: 4px; right: 4px;
-  width: 7px; height: 7px;
-  background: var(--color-danger);
-  border-radius: 50%;
-  border: 1.5px solid var(--bg-secondary);
-}
-
-/* -- Rewards strip ---------------------------------------------------------- */
-.rewardsStrip {
-  padding: var(--space-3) var(--space-4);
-  background: var(--bg-secondary);
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.rewardsLabel {
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-semibold);
-  color: var(--text-muted);
+/* Títulos de Seção (PASSOS DE HOJE, BAÚS, etc) */
+.sectionTitle {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #6ee7b7;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: var(--space-2);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+  font-family: sans-serif;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
+.sectionSubtitle {
+  font-size: 0.65rem;
+  color: #a3a3a3;
+  font-family: sans-serif;
 }
 
+/* BAÚS */
+.rewardsStrip {
+  margin-top: 0.5rem;
+}
 .rewardsList {
   display: flex;
-  gap: var(--space-2);
+  gap: 0.5rem;
+  overflow-x: auto;
 }
-
 .rewardChip {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: var(--space-1);
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-full);
-  padding: var(--space-1) var(--space-3);
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-semibold);
-  color: var(--text-primary);
+  padding: 0.25rem 1rem 0.25rem 0.25rem;
+  background: linear-gradient(180deg, #2a3b32 0%, #17241d 100%);
+  border: 1px solid #0f1712;
+  border-radius: 8px;
+  color: #e2e8f0;
+  font-weight: bold;
+  font-size: 0.8rem;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 2px 4px rgba(0,0,0,0.5);
   cursor: pointer;
-  transition: background var(--transition-fast);
+  font-family: sans-serif;
 }
-
-.rewardChip:hover { background: rgba(40, 169, 255, 0.1); }
-
-/* -- Divider ---------------------------------------------------------------- */
-.divider {
-  height: 1px;
-  background: var(--border-subtle);
-  margin: 0 var(--space-4);
+.chestSprite {
+  width: 32px; height: 32px;
+  background-size: cover;
+  background-position: center;
+  margin-right: 8px;
 }
+.chestCommon { background-image: url('/assets/icons/chest_common.png'); }
+.chestUncommon { background-image: url('/assets/icons/chest_uncommon.png'); }
+.chestRare { background-image: url('/assets/icons/chest_rare.png'); }
+.chestEpic { background-image: url('/assets/icons/chest_epic.png'); }
+.chestLegendary { background-image: url('/assets/icons/chest_legendary.png'); }
 
-/* -- Recent items strip ----------------------------------------------------- */
-.itemsSection {
-  padding: var(--space-4) 0 var(--space-4) var(--space-4);
-}
-
-.itemsHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-right: var(--space-4);
-  margin-bottom: var(--space-3);
-}
-
-.itemsTitle {
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-semibold);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-muted);
-}
-
-.seeAll {
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-semibold);
-  color: var(--color-blue-coin);
-  cursor: pointer;
-  text-decoration: none;
-  transition: opacity var(--transition-fast);
-}
-
-.seeAll:hover { opacity: 0.8; }
-
+/* ITENS */
+.itemsSection { margin-top: 0.5rem; }
 .itemsScroll {
   display: flex;
-  gap: var(--space-3);
+  gap: 0.75rem;
   overflow-x: auto;
-  padding-right: var(--space-4);
-  padding-bottom: var(--space-2);
-  scrollbar-width: none;
+  padding: 0.25rem 0;
 }
-
-.itemsScroll::-webkit-scrollbar { display: none; }
-
-/* -- Bottom safe area ------------------------------------------------------- */
-.bottomSafe { height: 24px; }
-
-.logoImg { height: 90px; object-fit: contain; margin: 0 auto; display: block; border-radius: 12px; mix-blend-mode: screen; }
-

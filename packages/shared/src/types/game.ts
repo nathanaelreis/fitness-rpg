@@ -43,4 +43,5 @@ export type ChestType = "common" | "uncommon" | "rare";
 export interface DailySteps { current: number; goal: number; dailyCap: number; nextRewardAt: number; nextRewardType: ChestType; }
 export interface Wallet { greyCoin: number; blueCoin: number; }
 export interface PendingReward { id: string; type: ChestType; earnedAt: string; }
-export interface ActionItem { id: string; label: string; icon: string; badge?: number; href: string; accent?: boolean; }
+export interface ActionItem { id: string; label: string; icon?: string; spriteClass?: string; badge?: number; href: string; accent?: boolean; }
+

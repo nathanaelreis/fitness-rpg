@@ -1,67 +1,68 @@
-﻿import React from 'react';
-import { Item, EquipmentSlot } from '@fitness-rpg/shared';
-import { mockInventory, mockCharacter } from '../../mocks/gameData';
-import { DynamicAvatar } from '../../components/DynamicAvatar/DynamicAvatar';
-import styles from './Inventory.module.css';
+﻿import { DynamicAvatar } from "../../components/DynamicAvatar/DynamicAvatar";
+import { ActionHub } from "../../components/ActionHub/ActionHub";
+import { mockCharacter, mockInventory, mockActions } from "../../mocks/gameData";
+import styles from "./Inventory.module.css";
 
 export function Inventory() {
-  const [items] = React.useState<Item[]>(mockInventory);
-
-  const equippedItems = items.filter(i => i.isEquipped);
-  const unequippedItems = items.filter(i => !i.isEquipped);
-
-  const renderSlot = (slot: EquipmentSlot) => {
-    const item = equippedItems.find(i => i.slot === slot);
-    return (
-      <div className={styles.slotBox}>
-        <div className={styles.slotLabel}>{slot}</div>
-        {item ? <div className={styles.equippedIcon}>{item.name[0]}</div> : <div className={styles.emptySlot} />}
-      </div>
-    );
-  };
+  const char = mockCharacter;
+  const items = mockInventory;
+  
+  // Cria 30 slots (5 colunas x 6 linhas)
+  const gridSlots = Array.from({ length: 30 }).map((_, i) => items[i] || null);
 
   return (
     <div className={styles.page}>
-      <header className={styles.header}>
-        <a href="#/" className={styles.backBtn}>← Voltar</a>
-        <h1>Inventário</h1>
+      <header>
+        <a href="#/" style={{color: '#6ee7b7', textDecoration: 'none', fontWeight: 'bold'}}>← Voltar</a>
       </header>
-
-      {/* PAPER DOLL PREVIEW (CORPO INTEIRO) */}
-      <section className={styles.characterPreview}>
-        <div className={styles.slotsLeft}>
-          {renderSlot(EquipmentSlot.HELMET)}
-          {renderSlot(EquipmentSlot.WEAPON)}
-          {renderSlot(EquipmentSlot.ACCESSORY)}
+      
+      {/* PAINEL PAPER DOLL */}
+      <section className={styles.equipPanel}>
+        <div className={styles.equipHeader}>
+          <h1 className={styles.name}>{char.name}</h1>
+          <div className={styles.classInfo}>Lv. {char.level} • {char.race} {char.class}</div>
         </div>
         
-        <div className={styles.avatarWrapper}>
-          <DynamicAvatar appearance={mockCharacter.appearance} equippedItems={equippedItems} mode="full" />
-        </div>
-
-        <div className={styles.slotsRight}>
-          {renderSlot(EquipmentSlot.CHEST)}
-          {renderSlot(EquipmentSlot.LEGS)}
-          {renderSlot(EquipmentSlot.BOOTS)}
+        <div className={styles.dollArea}>
+          <div className={styles.slotsCol}>
+            <div className={styles.equipSlot} title="Capacete" />
+            <div className={styles.equipSlot} title="Peito" />
+            <div className={styles.equipSlot} title="Luvas" />
+            <div className={styles.equipSlot} title="Botas" />
+          </div>
+          
+          <div className={styles.avatarRing}>
+             <DynamicAvatar appearance={char.appearance} equippedItems={items.filter(i => i.isEquipped)} mode="face" />
+          </div>
+          
+          <div className={styles.slotsCol}>
+            <div className={styles.equipSlot} title="Arma Principal" />
+            <div className={styles.equipSlot} title="Escudo" />
+            <div className={styles.equipSlot} title="Anel" />
+            <div className={styles.equipSlot} title="Colar" />
+          </div>
         </div>
       </section>
 
-      <section className={styles.bag}>
-        <h2>Mochila</h2>
-        <div className={styles.bagGrid}>
-          {unequippedItems.length === 0 && <p className={styles.emptyMsg}>Mochila vazia.</p>}
-          {unequippedItems.map(item => (
-            <div key={item.id} className={styles.bagItem}>
-              {item.isNew && <span className={styles.newBadge}>Novo</span>}
-              <div className={styles.bagIcon}>{item.name[0]}</div>
-              <div className={styles.bagInfo}>
-                <div className={styles.bagName}>{item.name}</div>
-                <div className={styles.bagRarity}>{item.rarity}</div>
-              </div>
+      {/* GRADE DE INVENTÁRIO (5x6) */}
+      <section className={styles.gridPanel}>
+        <div className={styles.inventoryGrid}>
+          {gridSlots.map((item, idx) => (
+            <div key={idx} className={styles.gridCell} data-rarity={item?.rarity}>
+              {item && (
+                <>
+                  <div className={styles.itemIcon} />
+                  {item.isEquipped && <div className={styles.equippedBadge}>E</div>}
+                </>
+              )}
             </div>
           ))}
         </div>
       </section>
+      
+      <ActionHub actions={mockActions} />
     </div>
   );
 }
+
+

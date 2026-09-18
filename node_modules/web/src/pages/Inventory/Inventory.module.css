@@ -1,31 +1,132 @@
-﻿.page { min-height: 100vh; background: var(--bg-primary); color: var(--text-primary); padding-bottom: 2rem; }
-.header { display: flex; align-items: center; gap: 1rem; padding: 1rem; background: var(--bg-secondary); border-bottom: 1px solid var(--border-subtle); }
-.backBtn { color: var(--text-muted); text-decoration: none; font-weight: var(--fw-bold); }
-.characterPreview {
-  display: flex; justify-content: space-between; align-items: center; padding: 2rem 1rem;
-  background: radial-gradient(circle, var(--bg-surface) 0%, var(--bg-primary) 100%);
-  border-bottom: 1px solid var(--border-subtle);
+﻿.page {
+  min-height: 100vh;
+  background-color: #041c14;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.4) 1px, transparent 1px);
+  background-size: 60px 40px;
+  background-position: center top;
+  color: #e5e7eb;
+  padding: 1rem 1rem 6rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 480px;
+  margin: 0 auto;
+  font-family: sans-serif;
 }
-.avatarWrapper {
-  width: 140px; height: 180px; position: relative; flex-shrink: 0;
+
+/* Painel de Equipamentos (Paper Doll) */
+.equipPanel {
+  background: linear-gradient(180deg, #7a766c 0%, #5c5850 100%);
+  border: 2px solid #36342e;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.15), 0 6px 12px rgba(0,0,0,0.6);
 }
-.slotsLeft, .slotsRight { display: flex; flex-direction: column; gap: 1rem; }
-.slotBox {
-  width: 60px; height: 60px; background: rgba(0,0,0,0.2); border: 2px dashed var(--border-subtle);
-  border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;
+
+.equipHeader {
+  text-align: center;
+  margin-bottom: 1rem;
 }
-.slotLabel { font-size: 0.6rem; color: var(--text-muted); position: absolute; top: 2px; text-transform: uppercase; }
-.equippedIcon { font-size: 1.5rem; font-weight: bold; color: var(--accent-primary); }
-.emptySlot { width: 24px; height: 24px; opacity: 0.2; }
-.bag { padding: 1rem; }
-.bag h2 { margin-bottom: 1rem; font-family: var(--font-display); color: var(--text-secondary); }
-.bagGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 1rem; }
-.emptyMsg { color: var(--text-muted); font-size: var(--fs-sm); }
-.bagItem {
-  background: var(--bg-secondary); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 0.75rem;
-  display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; cursor: pointer;
+.name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fbbf24;
+  margin: 0;
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.8);
+  font-family: 'Georgia', serif;
 }
-.newBadge { position: absolute; top: -5px; right: -5px; background: var(--rpeg-green-main); color: #fff; font-size: 0.6rem; padding: 2px 6px; border-radius: 12px; font-weight: bold; }
-.bagIcon { width: 40px; height: 40px; background: var(--bg-surface); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--text-primary); border: 1px solid rgba(255,255,255,0.1); }
-.bagName { font-size: var(--fs-sm); font-weight: bold; margin-bottom: 0.2rem; }
-.bagRarity { font-size: 0.65rem; color: var(--tier-2); text-transform: uppercase; }
+.classInfo {
+  font-size: 0.75rem;
+  color: #e5e5e5;
+  margin-top: 2px;
+}
+
+.dollArea {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.slotsCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.equipSlot {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(180deg, #5f5c53 0%, #4f4c43 100%);
+  border: 2px solid #282622;
+  border-radius: 8px;
+  box-shadow: inset 0 4px 6px rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatarRing {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #064e3b;
+  border: 4px solid #b79c65; /* Dourado */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Painel da Grade de Inventário (5x6) */
+.gridPanel {
+  background: linear-gradient(180deg, #374151 0%, #1f2937 100%);
+  border: 4px solid #4b5563;
+  border-radius: 8px;
+  padding: 4px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.6);
+}
+.inventoryGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+  background: #111827;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.gridCell {
+  aspect-ratio: 1;
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 4px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.gridCell[data-rarity="COMMON"] { border: 1px solid #d1d5db; box-shadow: inset 0 0 8px rgba(209,213,219,0.2); }
+.gridCell[data-rarity="UNCOMMON"] { border: 1px solid #10b981; box-shadow: inset 0 0 8px rgba(16,185,129,0.3); }
+.gridCell[data-rarity="RARE"] { border: 1px solid #3b82f6; box-shadow: inset 0 0 8px rgba(59,130,246,0.3); }
+.gridCell[data-rarity="EPIC"] { border: 1px solid #8b5cf6; box-shadow: inset 0 0 8px rgba(139,92,246,0.3); }
+
+.itemIcon {
+  width: 70%;
+  height: 70%;
+  background: #4b5563; /* Placeholder para o ícone do item real */
+  border-radius: 4px;
+}
+
+.equippedBadge {
+  position: absolute;
+  top: -4px; right: -4px;
+  background: #10b981;
+  color: white;
+  font-size: 0.5rem;
+  font-weight: bold;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
